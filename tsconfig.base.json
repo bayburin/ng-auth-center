@@ -16,6 +16,9 @@
       "dom"
     ],
     "paths": {
+      "@env/*": [
+        "src/environments/*"
+      ],
       "auth-center": [
         "dist/auth-center/auth-center",
         "dist/auth-center"
