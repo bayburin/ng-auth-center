@@ -13,5 +13,9 @@
   },
   "publishConfig": {
     "@iss:registry": "https://gitlab.iss-reshetnev.ru/api/v4/projects/774/packages/npm/"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://gitlab.iss-reshetnev.ru/libraries/angular/ng-auth-center.git"
   }
 }
