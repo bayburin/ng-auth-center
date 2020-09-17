@@ -1,4 +1,3 @@
-// import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { CallbackPageComponent } from './pages/callback/callback-page.component';
@@ -24,9 +23,3 @@ const routes: Routes = [
 ];
 
 export const routerModule = RouterModule.forChild(routes);
-
-// @NgModule({
-//   imports: [routerModule],
-//   exports: [RouterModule]
-// })
-// export class AuthCenterRoutingModule { }

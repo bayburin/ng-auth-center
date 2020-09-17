@@ -18,28 +18,6 @@ import { AuthState } from './store/auth.state';
 import { jwtOptionsFactory } from './factories/jwt-options.factory';
 import { MaterialModule } from './material.module';
 
-
-import { Routes, RouterModule } from '@angular/router';
-import { RequestStateGuard } from './guards/request-state/request-state.guard';
-
-// export const routes: Routes = [
-//   {
-//     path: 'oauth2/callback',
-//     component: CallbackPageComponent,
-//     canActivate: [RequestStateGuard]
-//   },
-//   {
-//     path: 'oauth2/authorize_forbidden',
-//     component: AuthorizeForbiddenPageComponent
-//   },
-//   {
-//     path: 'oauth2/unauthorized',
-//     component: UnauthorizedPageComponent
-//   }
-// ];
-
-// export const routerModule = RouterModule.forChild(routes);
-
 export const jwtModule = JwtModule.forRoot({
   jwtOptionsProvider: {
     provide: JWT_OPTIONS,
@@ -47,7 +25,6 @@ export const jwtModule = JwtModule.forRoot({
     deps: [AuthState, CONFIG]
   }
 });
-
 
 @NgModule({
   declarations: [
@@ -61,14 +38,6 @@ export const jwtModule = JwtModule.forRoot({
     HttpClientModule,
     MaterialModule,
     routerModule,
-    // AuthCenterRoutingModule,
-    // JwtModule.forRoot({
-    //   jwtOptionsProvider: {
-    //     provide: JWT_OPTIONS,
-    //     useFactory: jwtOptionsFactory,
-    //     deps: [AuthState, CONFIG]
-    //   }
-    // })
     jwtModule
   ]
 })
