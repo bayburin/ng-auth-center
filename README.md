@@ -31,14 +31,12 @@ import { AppRoutingModule } from './app-routing.module'; // <-- обычно ф�
 import { environment } from '../environments/environment';
 
 @NgModule({
-  // ...
   imports: [
     // ...  
     HttpClientModule,
     AuthCenterModule.forRoot(environment.auth),
     AppRoutingModule // <-- Убедитесь, что файл с маршрутами импортируется ПОСЛЕ модуля AuthCenterModule.
   ],
-  // ...
 })
 export class AppModule { }
 
