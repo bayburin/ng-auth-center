@@ -12,6 +12,12 @@
     },
     {
       "path": "./tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/auth-center/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/auth-center/tsconfig.spec.json"
     }
 ]
 }

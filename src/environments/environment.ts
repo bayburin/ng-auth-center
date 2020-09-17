@@ -3,7 +3,18 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  auth: {
+    clientId: '82',
+    // redirectUrl: 'https://localhost.iss-reshetnev.ru:4200/oauth2/callback',
+    redirectUrl: 'http://localhost:4200/oauth2/callback',
+    serverUrl: 'http://localhost:3000/api/v1/auth/token',
+    appName: 'Орбита',
+    jwtOptions: {
+      allowedDomains: ['localhost:3000'],
+      disallowedRoutes: []
+    }
+  }
 };
 
 /*
