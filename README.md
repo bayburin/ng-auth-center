@@ -107,6 +107,8 @@ export class AppRoutingModule { }
 
 <sup>*</sup> - атрибут обязателен
 
+<br>
+
 ## `AuthHelper API`:
 
 Библиотека предоставляет сервис `AuthHelper`, который содержит некоторые полезные функции:
