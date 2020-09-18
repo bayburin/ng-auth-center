@@ -41,3 +41,11 @@ import { environment } from '../environments/environment';
 export class AppModule { }
 
 ```
+
+Импортируйте стили в файле `angular.json` в раздел вашего проекта
+``` json
+"styles": [
+  "node_modules/auth-center/assets/styles.scss", // <-- Файл, который необходимо импортировать
+  // ...
+]
+```
