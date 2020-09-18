@@ -93,15 +93,58 @@ export class AppRoutingModule { }
 
 ## Атрибуты для инициализации `AuthCenterModule`:
 
-1. **authorizationServer**
-2. **serverUrl<sup>*</sup>**
-3. **cliendId<sup>*</sup>**
-4. **responseType**
-5. **state**
-6. **redirectUrl<sup>*</sup>**
-7. **scope**
-8. **storageNaming**
-9. **appName<sup>*</sup>**
-10. **jwtOptions**
+1. **authorizationServer** - адрес сервера авторизации (по умолчанию `https://auth-center.iss-reshetnev.ru/oauth/authorize`);
+2. **serverUrl<sup>*</sup>** - адрес вашего сервера, который вернет вам JWT;
+3. **cliendId<sup>*</sup>** - ID вашего приложения, выданный сервером авторизации;
+4. **responseType** - запрашиваемый тип разрешения, может быть одним из следующих праметров: `code` - для запроса кода авторизации, `token` - для запроса токена доступа; (по умолчанию `code`);
+5. **state** - используется для безопасности. Если его отправить, сервер авторизации вернет его обратно, чтобы вы могли убедиться, что это ответ именно на ваш запрос (по умолчанию пустая строка);
+6. **redirectUrl<sup>*</sup>** - адрес, на который будет перенаправлен пользователь после успешной авторизации на сервере авторизации;
+7. **scope** - cписок разрешений, необходимых приложению (по умолчанию пустой). Указывать через запятую без пробелов.
+8. **appName<sup>*</sup>** - имя приложения которое будет отображаться на странице входа
+9. **jwtOptions** - объект, содержащий два параметра `allowedDomains` и `disallowedRoutes`. 
+    1. **allowedDomains** - список доменов, для которых будет добавляться заголовок `Authorization` с содержимым `Bearer <JWT>`
+    2. **disallowedRoutes** - список адресов, на которые НЕ будет добавляться заголовок `Authorization`
 
 <sup>*</sup> - атрибут обязателен
+
+## `AuthHelper API`:
+
+Библиотека предоставляет сервис `AuthHelper`, который содержит некоторые полезные функции:
+
+### `isAuthenticated$: Observable<boolean>` - флаг, показывающий, авторизован ли пользователь.
+
+``` typescript
+import { AuthHelper } from 'auth-center';
+//...
+constructor(private authHelper: AuthHelper) {}
+ngOnInit(): void {
+  this.authHelper.isAuthenticated$.subscribe(isAuth => {
+    console.log(isAuth);
+  });
+}
+```
+
+<br>
+
+### `getJwtPayload(): any` - возвращает данные из JWT.
+
+``` typescript
+import { AuthHelper } from 'auth-center';
+//...
+constructor(private authHelper: AuthHelper) {}
+ngOnInit(): void {
+  console.log(this.authHelper.getJwtPayload());
+}
+```
+
+<br>
+
+### `logout(): void` - редиректит на страницу "/oauth2/unauthorized" для выхода из приложения.
+
+``` typescript
+import { AuthHelper } from 'auth-center';
+//...
+constructor(private authHelper: AuthHelper) {}
+logoutClick(): void {
+  this.authHelper.logout();
+}
