@@ -70,7 +70,7 @@ export class AppModule { }
 
 ``` json
 "styles": [
-  "node_modules/auth-center/assets/styles.scss",
+  "node_modules/@iss/ng-auth-center/assets/styles.scss",
   // ...
 ]
 ```
