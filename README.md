@@ -2,7 +2,7 @@
 
 Библиотека для авторизации по протоколу OAuth2 через Личный Кабинет на Angular 2+
 
-
+<br>
 
 ## Установка
 
@@ -14,16 +14,18 @@
 
 `npm i @iss/ng-auth-center`
 
+<br>
+
 **Внимание!** Для корректной работы библиотеки должны быть установлены следующие зависимости:
 1. @angular/cdk (установка: `npm i @angular/cdk` или `yarn add @angular/cdk`)
 2. @angular/material (установка: `npm i @angular/material` или `yarn add @angular/material`)
 3. @auth0/angular-jwt (установка: `npm i @angular/angular-jwt` или `yarn add @angular/angular-jwt`)
 
-
+<br>
 
 ## Использование
 
-Импортируйте `AuthCenterModule` и добавьте его в список импортов проекта. Вызовите метод `forRoot` и передайте атрибуты, необходимые для работы библиотеки (список атрибутов описан далее). Атрибуты лучше описать в файле `src/environment.ts`, чтобы в production режиме их можно было спокойно поменять.
+Импортируйте `AuthCenterModule` и добавьте его в список импортов проекта. Вызовите метод `forRoot` и передайте атрибуты, необходимые для работы библиотеки (список атрибутов описан далее). Атрибуты лучше описать в файле `src/environment.ts`, чтобы в production режиме их можно было легко изменить.
 
 Также убедитесь, что у вас импортирован `HttpClientModule` и `RouterModule`.
 
@@ -46,6 +48,8 @@ export class AppModule { }
 
 ```
 
+<br>
+
 Импортируйте стили в файле `angular.json` в раздел вашего проекта.
 
 ``` json
@@ -54,6 +58,8 @@ export class AppModule { }
   // ...
 ]
 ```
+
+<br>
 
 Библиотека предоставляет класс `AuthCenterGuard`, в котором реализован метод `canActivate` для активации маршрута, если пользователь авторизован. Для проверки авторизации в маршрутах импортируйте класс `AuthCenterGuard`. В случае, если пользователь не авторизован, он будет перенаправлен на страницу входа.
 
@@ -82,3 +88,20 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 ```
+
+<br>
+
+## Атрибуты для инициализации `AuthCenterModule`:
+
+1. **authorizationServer**
+2. **serverUrl<sup>*</sup>**
+3. **cliendId<sup>*</sup>**
+4. **responseType**
+5. **state**
+6. **redirectUrl<sup>*</sup>**
+7. **scope**
+8. **storageNaming**
+9. **appName<sup>*</sup>**
+10. **jwtOptions**
+
+<sup>*</sup> - атрибут обязателен
