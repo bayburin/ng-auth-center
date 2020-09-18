@@ -6,17 +6,33 @@
 
 ## Установка
 
-### С помощью yarn:
+### Настройка менеджера пакетов
 
-`yarn add @iss/ng-auth-center`
+Прежде чем устанавливать пакеты с областью видимости `@iss/...` необходимо настроить путь к внутрикорпоративному реестру пакетов. Если ваш менеджер пакетов уже настроен, этот шаг можно пропустить.
 
-### С помощью npm:
+#### для npm:
 
-`npm i @iss/ng-auth-center`
+`echo @iss:registry=https://gitlab.iss-reshetnev.ru/api/v4/packages/npm >> .npmrc`
+
+#### для yarn:
+
+`echo "@iss:registry" "https://gitlab.iss-reshetnev.ru/api/v4/packages/npm" >> .yarnrc`
 
 <br>
 
-**Внимание!** Для корректной работы библиотеки должны быть установлены следующие зависимости:
+### Установка библиотеки
+
+#### для npm:
+
+`npm i @iss/ng-auth-center`
+
+#### для yarn:
+
+`yarn add @iss/ng-auth-center`
+
+<br>
+
+**Внимание!** Для корректной работы библиотеки в проекте должны быть установлены следующие зависимости:
 1. @angular/cdk (установка: `npm i @angular/cdk` или `yarn add @angular/cdk`)
 2. @angular/material (установка: `npm i @angular/material` или `yarn add @angular/material`)
 3. @auth0/angular-jwt (установка: `npm i @angular/angular-jwt` или `yarn add @angular/angular-jwt`)
