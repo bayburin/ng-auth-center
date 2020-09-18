@@ -12,11 +12,11 @@
 
 #### для npm:
 
-`echo @iss:registry=https://gitlab.iss-reshetnev.ru/api/v4/packages/npm >> .npmrc`
+`echo @iss:registry=https://gitlab.iss-reshetnev.ru/api/v4/packages/npm >> ~/.npmrc`
 
 #### для yarn:
 
-`echo "@iss:registry" "https://gitlab.iss-reshetnev.ru/api/v4/packages/npm" >> .yarnrc`
+`echo "@iss:registry" "https://gitlab.iss-reshetnev.ru/api/v4/packages/npm" >> ~/.yarnrc`
 
 <br>
 
