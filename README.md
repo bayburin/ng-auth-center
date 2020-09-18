@@ -46,10 +46,39 @@ export class AppModule { }
 
 ```
 
-Импортируйте стили в файле `angular.json` в раздел вашего проекта
+Импортируйте стили в файле `angular.json` в раздел вашего проекта.
+
 ``` json
 "styles": [
-  "node_modules/auth-center/assets/styles.scss", // <-- Файл, который необходимо импортировать
+  "node_modules/auth-center/assets/styles.scss",
   // ...
 ]
+```
+
+Библиотека предоставляет класс `AuthCenterGuard`, в котором реализован метод `canActivate` для активации маршрута, если пользователь авторизован. Для проверки авторизации в маршрутах импортируйте класс `AuthCenterGuard`. В случае, если пользователь не авторизован, он будет перенаправлен на страницу входа.
+
+``` typescript
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { AuthCenterGuard } from 'auth-center';
+
+import { HomeComponent } from './home/home.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent,
+    canActivate: [AuthCenterGuard] // <-- Пример использования AuthCenterGuard класса.
+  },
+  {
+    path: '**',
+    redirectTo: ''
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
 ```
