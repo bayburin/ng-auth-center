@@ -2,6 +2,8 @@
 
 Библиотека для авторизации по протоколу OAuth2 через Личный Кабинет на Angular 2+
 
+
+
 ## Установка
 
 ### С помощью yarn:
@@ -16,6 +18,8 @@
 1. @angular/cdk (установка: `npm i @angular/cdk` или `yarn add @angular/cdk`)
 2. @angular/material (установка: `npm i @angular/material` или `yarn add @angular/material`)
 3. @auth0/angular-jwt (установка: `npm i @angular/angular-jwt` или `yarn add @angular/angular-jwt`)
+
+
 
 ## Использование
 
