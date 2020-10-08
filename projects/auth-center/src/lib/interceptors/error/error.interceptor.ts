@@ -17,9 +17,9 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(catchError(error => {
       if (error.status === 401) {
         this.router.navigate(['oauth2', 'unauthorized']);
-
-        return throwError(error);
       }
+
+      return throwError(error);
     }));
   }
 }

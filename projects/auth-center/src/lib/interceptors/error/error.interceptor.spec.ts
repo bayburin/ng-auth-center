@@ -47,4 +47,16 @@ describe('ErrorInterceptor', () => {
 
     httpMock.expectOne({ url: 'http://test' }).flush(body, response);
   });
+
+  it('should catch error', () => {
+    const body = { message: 'unauthorized' };
+    const response = { status: 500, statusText: 'Internal Server Error' };
+
+    http.get('http://test').subscribe(
+      () => {},
+      (error) => { expect(error.error).toEqual(body); }
+    );
+
+    httpMock.expectOne({ url: 'http://test' }).flush(body, response);
+  });
 });
