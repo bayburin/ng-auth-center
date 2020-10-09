@@ -1,0 +1,51 @@
+default:
+  image: docker-hub.iss-reshetnev.ru/registry/languages/nodejs/node_14:alpine
+
+  before_script:
+    - |
+      if [[ ! -f package.json ]]; then
+        echo "No package.json found! A package.json file is required to publish a package to GitLab's NPM registry."
+        exit 1
+      fi
+    - NPM_PACKAGE_NAME=$(node -p "require('./projects/auth-center/package.json').name")
+    - NPM_PACKAGE_VERSION=$(node -p "require('./projects/auth-center/package.json').version")
+
+validate_package_scope:
+  stage: build
+  only:
+    - master
+  script:
+    - |
+      if [[ ! $NPM_PACKAGE_NAME =~ ^@$CI_PROJECT_ROOT_NAMESPACE/ ]]; then
+        echo "Invalid package scope! Packages must be scoped in the root namespace of the project, e.g. \"@${CI_PROJECT_ROOT_NAMESPACE}/${CI_PROJECT_NAME}\""
+        exit 1
+      fi
+
+build_package:
+  stage: build
+  only:
+    - master
+  script:
+    - |
+      if [[ ! -f .npmrc ]]; then
+        echo 'No .npmrc found! Creating one now.'
+
+        {
+          echo '@iss:registry=https://gitlab.iss-reshetnev.ru/api/v4/packages/npm/'
+          echo '//gitlab.iss-reshetnev.ru/api/v4/packages/npm/:_authToken=${CI_JOB_TOKEN}'
+          echo '//gitlab.iss-reshetnev.ru/api/v4/projects/774/packages/npm/:_authToken=${CI_JOB_TOKEN}'
+        } >> ~/.npmrc
+
+      fi
+    - npm install -g @angular/cli
+    - npm install
+    - ng build auth-center --prod
+    - npm run build-lib-styles
+    - |
+      {
+        cd dist/auth-center &&
+        npm publish &&
+        echo "Successfully published version ${NPM_PACKAGE_VERSION} of ${NPM_PACKAGE_NAME} to GitLab's NPM registry: ${CI_PROJECT_URL}/-/packages"
+      } || {
+        echo "No new version of ${NPM_PACKAGE_NAME} published. This is most likely because version ${NPM_PACKAGE_VERSION} already exists in GitLab's NPM registry."
+      }
