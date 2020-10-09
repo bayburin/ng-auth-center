@@ -1,0 +1,58 @@
+default:
+  image: docker-hub.iss-reshetnev.ru/registry/languages/nodejs/node_14:alpine
+
+  before_script:
+    - |
+      if [[ ! -f package.json ]]; then
+        echo "No package.json found! A package.json file is required to publish a package to GitLab's NPM registry."
+        exit 1
+      fi
+    - NPM_PACKAGE_NAME=$(node -p "require('./package.json').name")
+    - NPM_PACKAGE_VERSION=$(node -p "require('./package.json').version")
+
+validate_package_scope:
+  stage: build
+  script:
+    - |
+      if [[ ! $NPM_PACKAGE_NAME =~ ^@$CI_PROJECT_ROOT_NAMESPACE/ ]]; then
+        echo "Invalid package scope! Packages must be scoped in the root namespace of the project, e.g. \"@${CI_PROJECT_ROOT_NAMESPACE}/${CI_PROJECT_NAME}\""
+        exit 1
+      fi
+
+create_npmrc:
+  stage: build
+  script:
+    - |
+      if [[ ! -f .npmrc ]]; then
+        echo 'No .npmrc found! Creating one now.'
+
+        {
+          echo '@${CI_PROJECT_ROOT_NAMESPACE}:registry=${CI_SERVER_PROTOCOL}://${CI_SERVER_HOST}:${CI_SERVER_PORT}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/'
+          echo '//${CI_SERVER_HOST}:${CI_SERVER_PORT}/api/v4/packages/npm/:_authToken=${CI_JOB_TOKEN}'
+          echo '//${CI_SERVER_HOST}:${CI_SERVER_PORT}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}'
+        } >> .npmrc
+
+      fi
+  artifacts:
+    paths:
+      - .npmrc
+
+build_package:
+    stage: build
+    script:
+        - npm install
+        - ng build auth-center --prod
+        - npm run build-lib-styles
+
+
+publish_package:
+  stage: deploy
+  script:
+    - |
+      {
+        cd dist/auth-center
+        npm publish &&
+        echo "Successfully published version ${NPM_PACKAGE_VERSION} of ${NPM_PACKAGE_NAME} to GitLab's NPM registry: ${CI_PROJECT_URL}/-/packages"
+      } || {
+        echo "No new version of ${NPM_PACKAGE_NAME} published. This is most likely because version ${NPM_PACKAGE_VERSION} already exists in GitLab's NPM registry."
+      }
