@@ -1,4 +1,6 @@
 default:
+  only:
+    - master
   image: docker-hub.iss-reshetnev.ru/registry/languages/nodejs/node_14:alpine
 
   before_script:
@@ -11,6 +13,8 @@ default:
     - NPM_PACKAGE_VERSION=$(node -p "require('./projects/auth-center/package.json').version")
 
 validate_package_scope:
+  only:
+    - master
   stage: build
   script:
     - |
@@ -20,6 +24,8 @@ validate_package_scope:
       fi
 
 build_package:
+  only:
+    - master
   stage: build
   script:
     - |
