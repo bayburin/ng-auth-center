@@ -8,7 +8,7 @@ import { CallbackPageComponent } from './pages/callback/callback-page.component'
 import { AuthorizeForbiddenPageComponent } from './pages/authorize-forbidden/authorize-forbidden-page.component';
 import { UnauthorizedPageComponent } from './pages/unauthorized/unauthorized-page.component';
 
-import { routerModule } from './auth-center-routing.module';
+import { AuthRouterModule } from './auth-center-routing.module';
 
 import { CONFIG, defaultConfig } from './auth-center.config';
 import { IConfig } from './interfaces/config.interface';
@@ -37,7 +37,7 @@ export const jwtModule = JwtModule.forRoot({
     CommonModule,
     HttpClientModule,
     MaterialModule,
-    routerModule,
+    AuthRouterModule,
     jwtModule
   ]
 })
