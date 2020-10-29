@@ -1,8 +1,4 @@
-import { Inject, NgModule } from '@angular/core';
-import { Routes, RouterModule, Router } from '@angular/router';
-
-import { CONFIG } from './auth-center.config';
-import { IConfig } from './interfaces/config.interface';
+import { Routes, RouterModule } from '@angular/router';
 
 import { CallbackPageComponent } from './pages/callback/callback-page.component';
 import { AuthorizeForbiddenPageComponent } from './pages/authorize-forbidden/authorize-forbidden-page.component';
@@ -26,21 +22,4 @@ const routes: Routes = [
   }
 ];
 
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class AuthRouterModule {
-  constructor(router: Router, @Inject(CONFIG) config: IConfig) {
-    const routerConfig = router.config;
-    const registeredPath = config.redirectUrl.replace(/^(.*\/\/)?[^\/]+\//, '');
-
-    if (routerConfig.every(route => route.path !== registeredPath)) {
-      routerConfig.unshift({
-        path: config.redirectUrl.replace(/^(.*\/\/)?[^\/]+\//, ''),
-        redirectTo: 'oauth2/callback',
-      });
-      router.resetConfig(routerConfig);
-    }
-  }
-}
+export const routerModule = RouterModule.forChild(routes);

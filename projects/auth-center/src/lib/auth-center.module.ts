@@ -8,7 +8,7 @@ import { CallbackPageComponent } from './pages/callback/callback-page.component'
 import { AuthorizeForbiddenPageComponent } from './pages/authorize-forbidden/authorize-forbidden-page.component';
 import { UnauthorizedPageComponent } from './pages/unauthorized/unauthorized-page.component';
 
-import { AuthRouterModule } from './auth-center-routing.module';
+import { routerModule } from './auth-center-routing.module';
 
 import { CONFIG, defaultConfig } from './auth-center.config';
 import { IConfig } from './interfaces/config.interface';
@@ -17,6 +17,7 @@ import { ErrorInterceptor } from './interceptors/error/error.interceptor';
 import { AuthState } from './store/auth.state';
 import { jwtOptionsFactory } from './factories/jwt-options.factory';
 import { MaterialModule } from './material.module';
+import { Router } from '@angular/router';
 
 export const jwtModule = JwtModule.forRoot({
   jwtOptionsProvider: {
@@ -37,7 +38,7 @@ export const jwtModule = JwtModule.forRoot({
     CommonModule,
     HttpClientModule,
     MaterialModule,
-    AuthRouterModule,
+    routerModule,
     jwtModule
   ]
 })
@@ -53,9 +54,16 @@ export class AuthCenterModule {
     };
   }
 
-  constructor(@Optional() @Inject(CONFIG) config: IConfig) {
-    if (!config) {
-      return defaultConfig;
+  constructor(@Optional() @Inject(CONFIG) config: IConfig, router: Router) {
+    const routerConfig = router.config;
+    const registeredPath = config.redirectUrl.replace(/^(.*\/\/)?[^\/]+\//, '');
+
+    if (routerConfig.every(route => route.path !== registeredPath)) {
+      routerConfig.unshift({
+        path: config.redirectUrl.replace(/^(.*\/\/)?[^\/]+\//, ''),
+        redirectTo: 'oauth2/callback',
+      });
+      router.resetConfig(routerConfig);
     }
   }
 }
