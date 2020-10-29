@@ -41,6 +41,8 @@
 
 ## Использование
 
+Для работы с центром авторизации необходимо зарегистрировать приложение с определенным адресом: `<Адрес приложения>/oauth2/callback`.
+
 Импортируйте `AuthCenterModule` и добавьте его в список импортов проекта. Вызовите метод `forRoot` и передайте атрибуты, необходимые для работы библиотеки (список атрибутов описан [далее](#атрибуты-для-инициализации-authcentermodule)). Атрибуты лучше описать в файле `src/environment.ts`, чтобы в production режиме их можно было легко изменить.
 
 Также убедитесь, что у вас импортирован `HttpClientModule` и `RouterModule`.
@@ -82,7 +84,7 @@ export class AppModule { }
 ``` typescript
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthCenterGuard } from 'auth-center';
+import { AuthCenterGuard } from '@iss/ng-auth-center';
 
 import { HomeComponent } from './home/home.component';
 
@@ -132,7 +134,7 @@ export class AppRoutingModule { }
 ### `isAuthenticated$: Observable<boolean>` - флаг, показывающий, авторизован ли пользователь.
 
 ``` typescript
-import { AuthHelper } from 'auth-center';
+import { AuthHelper } from '@iss/ng-auth-center';
 //...
 constructor(private authHelper: AuthHelper) {}
 ngOnInit(): void {
@@ -147,7 +149,7 @@ ngOnInit(): void {
 ### `getJwtPayload(): any` - возвращает данные из JWT.
 
 ``` typescript
-import { AuthHelper } from 'auth-center';
+import { AuthHelper } from '@iss/ng-auth-center';
 //...
 constructor(private authHelper: AuthHelper) {}
 ngOnInit(): void {
@@ -160,7 +162,7 @@ ngOnInit(): void {
 ### `logout(): void` - редиректит на страницу "/oauth2/unauthorized" для выхода из приложения.
 
 ``` typescript
-import { AuthHelper } from 'auth-center';
+import { AuthHelper } from '@iss/ng-auth-center';
 //...
 constructor(private authHelper: AuthHelper) {}
 logoutClick(): void {
