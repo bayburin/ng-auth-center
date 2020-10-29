@@ -35,7 +35,7 @@
 **Внимание!** Для корректной работы библиотеки в проекте должны быть установлены следующие зависимости:
 1. @angular/cdk (установка: `npm i @angular/cdk` или `yarn add @angular/cdk`)
 2. @angular/material (установка: `npm i @angular/material` или `yarn add @angular/material`)
-3. @auth0/angular-jwt (установка: `npm i @angular/angular-jwt` или `yarn add @angular/angular-jwt`)
+3. @auth0/angular-jwt (установка: `npm i @auth0/angular-jwt` или `yarn add @auth0/angular-jwt`)
 
 <br>
 
