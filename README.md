@@ -142,7 +142,7 @@ export const environment = {
     clientId: '111',
     redirectUrl: 'http://localhost:4200/oauth2/callback',
     serverUrl: 'http://localhost:3000/auth/token',
-    appName: 'Example app name',
+    appName: 'Орбита',
     jwtOptions: {
       allowedDomains: ['localhost:3000'],
       disallowedRoutes: ['http://localhost:3000/example_route']
