@@ -200,3 +200,20 @@ constructor(private authHelper: AuthHelper) {}
 logoutClick(): void {
   this.authHelper.logout();
 }
+```
+
+<br>
+
+## Скриншоты:
+
+### Процесс авторизации:
+![Процесс авторизации](src/assets/images/process-page.png "Процесс авторизации")
+
+### Успешная авторизация:
+![Успешная авторизация](src/assets/images/success-page.png "Успешная авторизация")
+
+### Ошибка авторизации:
+![Ошибка авторизации](src/assets/images/error-page.png "Ошибка авторизации")
+
+### Неавторизован:
+![Неавторизован](src/assets/images/unanuthorized-page.png "Неавторизован")
