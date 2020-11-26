@@ -35,4 +35,8 @@ export class AuthHelper extends AuthHelperAbstract {
   logout(): void {
     this.router.navigate(['oauth2', 'unauthorized']);
   }
+
+  getRawJwt(): string {
+    return this.state.getJwt();
+  }
 }

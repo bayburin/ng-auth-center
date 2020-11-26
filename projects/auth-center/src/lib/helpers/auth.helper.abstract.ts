@@ -22,4 +22,9 @@ export abstract class AuthHelperAbstract {
    * Редиректит на страницу "/oauth2/unauthorized" для выхода из приложения.
    */
   abstract logout(): void;
+
+  /**
+   * Возвращает сырой JWT.
+   */
+  abstract getRawJwt(): string;
 }

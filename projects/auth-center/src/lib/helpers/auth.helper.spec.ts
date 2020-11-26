@@ -10,6 +10,7 @@ import { AuthStateStub, fakeToken } from './../store/auth.state.stub';
 
 describe('AuthHelper', () => {
   let helper: AuthHelper;
+  let authState: AuthState;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -22,6 +23,7 @@ describe('AuthHelper', () => {
     });
 
     helper = TestBed.inject(AuthHelper);
+    authState = TestBed.inject(AuthState);
   });
 
   // describe('#getCurrentUser', () => {
@@ -58,11 +60,9 @@ describe('AuthHelper', () => {
   describe('#getJwtPayload', () => {
     let jwtHelper: JwtHelperService;
     let jwtSpy: jasmine.Spy;
-    let authState: AuthState;
 
     beforeEach(() => {
       jwtHelper = TestBed.inject(JwtHelperService);
-      authState = TestBed.inject(AuthState);
       jwtSpy = spyOn(jwtHelper, 'decodeToken');
     });
 
@@ -98,6 +98,15 @@ describe('AuthHelper', () => {
       helper.logout();
 
       expect(router.navigate).toHaveBeenCalledWith(['oauth2', 'unauthorized']);
+    });
+  });
+
+  describe('#getRawJwt', () => {
+    it('should return raw jwt string', () => {
+      const jwt = 'raw jwt';
+      spyOn(authState, 'getJwt').and.returnValue(jwt);
+
+      expect(helper.getRawJwt()).toEqual(jwt);
     });
   });
 });
