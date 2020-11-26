@@ -5,8 +5,7 @@ import { Router } from '@angular/router';
 
 import { AuthHelper } from './auth.helper';
 import { AuthState } from './../store/auth.state';
-import { AuthStateStub, fakeToken } from './../store/auth.state.stub';
-// import { CurrentUser } from './../models/current-user/current-user.model';
+import { AuthStateStub } from './../store/auth.state.stub';
 
 describe('AuthHelper', () => {
   let helper: AuthHelper;
@@ -25,37 +24,6 @@ describe('AuthHelper', () => {
     helper = TestBed.inject(AuthHelper);
     authState = TestBed.inject(AuthState);
   });
-
-  // describe('#getCurrentUser', () => {
-  //   let jwtHelper: JwtHelperService;
-  //   let jwtSpy: jasmine.Spy;
-  //   let authState: AuthState;
-
-  //   beforeEach(() => {
-  //     jwtHelper = TestBed.inject(JwtHelperService);
-  //     authState = TestBed.inject(AuthState);
-  //     jwtSpy = spyOn(authState, 'getJwt');
-  //   });
-
-  //   it('should call "decodeToken" with jwt from AuthState', () => {
-  //     spyOn(jwtHelper, 'decodeToken');
-  //     helper.getCurrentUser();
-
-  //     expect(jwtHelper.decodeToken).toHaveBeenCalledWith(authState.getJwt());
-  //   });
-
-  //   it('should return null if jwt is empty', () => {
-  //     jwtSpy.and.returnValue(null);
-
-  //     expect(helper.getCurrentUser()).toBeNull();
-  //   });
-
-  //   it('should return CurrentUser instance if jwt is not empty', () => {
-  //     jwtSpy.and.returnValue(fakeToken);
-
-  //     expect(helper.getCurrentUser()).toBeInstanceOf(CurrentUser);
-  //   });
-  // });
 
   describe('#getJwtPayload', () => {
     let jwtHelper: JwtHelperService;
