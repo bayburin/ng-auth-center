@@ -204,6 +204,19 @@ logoutClick(): void {
 
 <br>
 
+### `getRawJwt(): string` - возвращает сырой JWT.
+
+``` typescript
+import { AuthHelper } from '@iss/ng-auth-center';
+//...
+constructor(private authHelper: AuthHelper) {}
+ngOnInit(): void {
+  console.log(this.authHelper.getRawJwt());
+}
+```
+
+<br>
+
 ## Скриншоты:
 
 ### Процесс авторизации:
