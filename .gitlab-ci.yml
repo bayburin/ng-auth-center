@@ -28,6 +28,9 @@ build_package:
   stage: build
   only:
     - master
+  except:
+    changes:
+      - "README.md"
   script:
     - |
       if [[ ! -f .npmrc ]]; then
