@@ -21,11 +21,11 @@
 
 Прежде чем устанавливать пакеты с областью видимости `@iss/...` необходимо настроить путь к внутрикорпоративному реестру пакетов. Если ваш менеджер пакетов уже настроен, этот шаг можно пропустить.
 
-#### для npm:
+#### для `npm`:
 
 `echo @iss:registry=https://gitlab.iss-reshetnev.ru/api/v4/packages/npm >> ~/.npmrc`
 
-#### для yarn:
+#### для `yarn`:
 
 `echo "@iss:registry" "https://gitlab.iss-reshetnev.ru/api/v4/packages/npm" >> ~/.yarnrc`
 
@@ -33,11 +33,11 @@
 
 ### Установка библиотеки
 
-#### для npm:
+#### для `npm`:
 
 `npm i @iss/ng-auth-center`
 
-#### для yarn:
+#### для `yarn`:
 
 `yarn add @iss/ng-auth-center`
 
