@@ -1,6 +1,10 @@
 default:
   image: docker-hub.iss-reshetnev.ru/registry/languages/nodejs/node_14:alpine
 
+  cache:
+    paths:
+      - node_modules
+
   before_script:
     - |
       if [[ ! -f package.json ]]; then
