@@ -1,5 +1,5 @@
 import { NgModule, ModuleWithProviders, Optional, Inject } from '@angular/core';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { CommonModule } from '@angular/common';
 
@@ -36,7 +36,6 @@ export const jwtModule = JwtModule.forRoot({
   ],
   imports: [
     CommonModule,
-    HttpClientModule,
     MaterialModule,
     routerModule,
     jwtModule
