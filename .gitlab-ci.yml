@@ -1,6 +1,10 @@
 default:
   image: docker-hub.iss-reshetnev.ru/registry/languages/nodejs/node_14:alpine
 
+  cache:
+    paths:
+      - node_modules
+
   before_script:
     - |
       if [[ ! -f package.json ]]; then
@@ -14,6 +18,9 @@ validate_package_scope:
   stage: build
   only:
     - master
+  except:
+    changes:
+      - "README.md"
   script:
     - |
       if [[ ! $NPM_PACKAGE_NAME =~ ^@$CI_PROJECT_ROOT_NAMESPACE/ ]]; then
@@ -25,6 +32,9 @@ build_package:
   stage: build
   only:
     - master
+  except:
+    changes:
+      - "README.md"
   script:
     - |
       if [[ ! -f .npmrc ]]; then
