@@ -1,5 +1,5 @@
 default:
-  image: docker-hub.iss-reshetnev.ru/registry/languages/nodejs/node_14:alpine
+  image: docker-hub.iss-reshetnev.ru/registry/languages/nodejs/node:14-alpine
 
   cache:
     paths:
