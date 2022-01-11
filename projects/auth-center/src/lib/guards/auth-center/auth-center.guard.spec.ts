@@ -18,8 +18,8 @@ describe('AuthCenterGuard', () => {
     TestBed.configureTestingModule({
       providers: [
         { provide: AuthFacade, useClass: AuthFacadeStub },
-        { provide: AuthState, useClass: AuthStateStub }
-      ]
+        { provide: AuthState, useClass: AuthStateStub },
+      ],
     });
 
     guard = TestBed.inject(AuthCenterGuard);
@@ -35,7 +35,7 @@ describe('AuthCenterGuard', () => {
   it('should return true if "getIsAuthenticated$" method returns true', () => {
     spyOn(authState, 'getIsAuthenticated$').and.returnValue(of(true));
 
-    guard.canActivate(null, stubSnapshot).subscribe(result => {
+    guard.canActivate(null, stubSnapshot).subscribe((result) => {
       expect(result).toBeTrue();
     });
   });

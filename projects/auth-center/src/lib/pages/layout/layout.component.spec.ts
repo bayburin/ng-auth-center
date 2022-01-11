@@ -13,9 +13,8 @@ describe('LayoutComponent', () => {
     TestBed.configureTestingModule({
       declarations: [LayoutComponent],
       providers: [{ provide: AuthFacade, useClass: AuthFacadeStub }],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
-    .compileComponents();
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

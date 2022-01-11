@@ -6,5 +6,7 @@ export class AuthFacadeStub extends AuthFacadeAbstract {
   loginWithRedirect(): void {}
   initAuthenticateProcess(params: Params): void {}
   logout(): void {}
-  getAppName(): string { return 'test'; }
+  getAppName(): string {
+    return 'test';
+  }
 }

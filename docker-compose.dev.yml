@@ -1,0 +1,50 @@
+version: '3.9'
+
+x-args: &args
+  args:
+    NODE_MAJOR: 14
+    ANGULAR_VERSION: 10
+    APP_ROOT: /app
+
+x-env: &envs
+  environment:
+    - APP_ROOT=/app
+
+x-common: &common
+  restart: unless-stopped
+  stdin_open: true
+  tty: true
+
+x-ui: &app
+  build:
+    <<: *args
+    context: .
+    dockerfile: .docker/dockerfiles/app.dev.Dockerfile
+
+x-frontend: &frontend
+  <<: *envs
+  <<: *app
+  volumes:
+    - .:/app:cached
+  <<: *common
+
+services:
+  runner:
+    <<: *frontend
+    command: /bin/bash
+
+  auth-center-lib:
+    <<: *frontend
+    depends_on:
+      - styles
+    command: ng build auth-center --watch
+
+  styles:
+    <<: *frontend
+    command: yarn run build-lib-watch-styles
+
+  app:
+    <<: *frontend
+    ports:
+      - '4200:4200'
+    command: ng serve --host 0.0.0.0 --disable-host-check --ssl=true --ssl-cert=/app/.docker/tls/iss_reshetnev_ru.crt --ssl-key=/app/.docker/tls/iss-reshetnev.ru.key

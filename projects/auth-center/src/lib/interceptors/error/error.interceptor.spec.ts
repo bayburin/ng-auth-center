@@ -13,17 +13,14 @@ describe('ErrorInterceptor', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        HttpClientTestingModule
-      ],
+      imports: [RouterTestingModule, HttpClientTestingModule],
       providers: [
         {
           provide: HTTP_INTERCEPTORS,
           useClass: ErrorInterceptor,
           multi: true,
-        }
-      ]
+        },
+      ],
     });
 
     http = TestBed.inject(HttpClient);
@@ -42,7 +39,9 @@ describe('ErrorInterceptor', () => {
 
     http.get('http://test').subscribe(
       () => {},
-      () => { expect(routerSpy).toHaveBeenCalledWith(['oauth2', 'unauthorized']); }
+      () => {
+        expect(routerSpy).toHaveBeenCalledWith(['oauth2', 'unauthorized']);
+      }
     );
 
     httpMock.expectOne({ url: 'http://test' }).flush(body, response);
@@ -54,7 +53,9 @@ describe('ErrorInterceptor', () => {
 
     http.get('http://test').subscribe(
       () => {},
-      (error) => { expect(error.error).toEqual(body); }
+      (error) => {
+        expect(error.error).toEqual(body);
+      }
     );
 
     httpMock.expectOne({ url: 'http://test' }).flush(body, response);

@@ -5,10 +5,10 @@ import { AuthFacade } from './../../facades/auth.facade';
 @Component({
   selector: 'ac-unauthorized',
   templateUrl: './unauthorized-page.component.html',
-  styleUrls: ['./unauthorized-page.component.scss']
+  styleUrls: ['./unauthorized-page.component.scss'],
 })
 export class UnauthorizedPageComponent implements OnInit {
-  constructor(private authFacade: AuthFacade) { }
+  constructor(private authFacade: AuthFacade) {}
 
   ngOnInit(): void {
     this.authFacade.logout();

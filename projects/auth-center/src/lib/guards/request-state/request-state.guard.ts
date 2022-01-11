@@ -6,19 +6,14 @@ import { map, tap } from 'rxjs/operators';
 import { AuthState } from '../../store/auth.state';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RequestStateGuard implements CanActivate {
-  constructor(
-    private authState: AuthState,
-    private router: Router
-  ) { }
+  constructor(private authState: AuthState, private router: Router) {}
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> {
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.authState.getRequestState$().pipe(
-      map(requestState => {
+      map((requestState) => {
         if (requestState.isValid(state.root.queryParams.state)) {
           return true;
         }

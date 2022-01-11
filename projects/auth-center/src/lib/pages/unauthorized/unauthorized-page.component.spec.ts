@@ -14,9 +14,8 @@ describe('UnauthorizedPageComponent', () => {
     TestBed.configureTestingModule({
       declarations: [UnauthorizedPageComponent],
       providers: [{ provide: AuthFacade, useClass: AuthFacadeStub }],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
-    .compileComponents();
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

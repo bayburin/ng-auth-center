@@ -10,16 +10,16 @@ const routes: Routes = [
   {
     path: 'oauth2/callback',
     component: CallbackPageComponent,
-    canActivate: [RequestStateGuard]
+    canActivate: [RequestStateGuard],
   },
   {
     path: 'oauth2/authorize_forbidden',
-    component: AuthorizeForbiddenPageComponent
+    component: AuthorizeForbiddenPageComponent,
   },
   {
     path: 'oauth2/unauthorized',
-    component: UnauthorizedPageComponent
-  }
+    component: UnauthorizedPageComponent,
+  },
 ];
 
 export const routerModule = RouterModule.forChild(routes);

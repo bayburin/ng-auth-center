@@ -16,7 +16,7 @@ describe('AuthState', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [{ provide: CONFIG, useValue: defaultConfig }]
+      providers: [{ provide: CONFIG, useValue: defaultConfig }],
     });
 
     config = TestBed.inject(CONFIG);
@@ -27,7 +27,7 @@ describe('AuthState', () => {
       localStorage.removeItem(config.storageNaming.jwt);
       state = TestBed.inject(AuthState);
 
-      state.getIsAuthenticated$().subscribe(result => {
+      state.getIsAuthenticated$().subscribe((result) => {
         expect(result).toBeFalse();
       });
     });
@@ -36,7 +36,7 @@ describe('AuthState', () => {
       localStorage.setItem(config.storageNaming.jwt, jwt);
       state = TestBed.inject(AuthState);
 
-      state.getIsAuthenticated$().subscribe(result => {
+      state.getIsAuthenticated$().subscribe((result) => {
         expect(result).toBeTrue();
       });
     });
@@ -46,7 +46,7 @@ describe('AuthState', () => {
         state = TestBed.inject(AuthState);
         state.setIsAuthenticated(true);
 
-        state.getIsAuthenticated$().subscribe(result => {
+        state.getIsAuthenticated$().subscribe((result) => {
           expect(result).toBeTrue();
         });
       });
@@ -61,13 +61,13 @@ describe('AuthState', () => {
       });
 
       it('should get instance of RequestState model', () => {
-        state.getRequestState$().subscribe(result => {
+        state.getRequestState$().subscribe((result) => {
           expect(result).toBeInstanceOf(RequestState);
         });
       });
 
       it('should get initial value from localStorage', () => {
-        state.getRequestState$().subscribe(result => {
+        state.getRequestState$().subscribe((result) => {
           expect(result).toEqual(new RequestState(requestStateValue));
         });
       });
@@ -87,7 +87,7 @@ describe('AuthState', () => {
       });
 
       it('should emit new value', () => {
-        state.getRequestState$().subscribe(result => {
+        state.getRequestState$().subscribe((result) => {
           expect(result).toEqual(new RequestState(requestStateValue));
         });
       });
@@ -107,7 +107,7 @@ describe('AuthState', () => {
       });
 
       it('should emit null value', () => {
-        state.getRequestState$().subscribe(result => {
+        state.getRequestState$().subscribe((result) => {
           expect(result.value).toBeNull();
         });
       });
@@ -194,7 +194,7 @@ describe('AuthState', () => {
     });
 
     it('should be false', () => {
-      state.getIsLoading$().subscribe(result => {
+      state.getIsLoading$().subscribe((result) => {
         expect(result).toBeFalse();
       });
     });
@@ -202,7 +202,7 @@ describe('AuthState', () => {
     it('should emit new value if its set', () => {
       state.setIsLoading(true);
 
-      state.getIsLoading$().subscribe(result => {
+      state.getIsLoading$().subscribe((result) => {
         expect(result).toBeTrue();
       });
     });
@@ -214,7 +214,7 @@ describe('AuthState', () => {
     });
 
     it('should be null', () => {
-      state.getError$().subscribe(result => {
+      state.getError$().subscribe((result) => {
         expect(result).toBeNull();
       });
     });
@@ -222,7 +222,7 @@ describe('AuthState', () => {
     it('should emit new value if its set', () => {
       state.setError(error);
 
-      state.getError$().subscribe(result => {
+      state.getError$().subscribe((result) => {
         expect(result).toEqual(error);
       });
     });

@@ -6,14 +6,10 @@ import { AuthState } from './../store/auth.state';
 import { AuthHelperAbstract } from './auth.helper.abstract';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthHelper extends AuthHelperAbstract {
-  constructor(
-    private state: AuthState,
-    private jwtHelper: JwtHelperService,
-    private router: Router
-  ) {
+  constructor(private state: AuthState, private jwtHelper: JwtHelperService, private router: Router) {
     super();
     this.isAuthenticated$ = this.state.getIsAuthenticated$();
   }

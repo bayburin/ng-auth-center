@@ -18,7 +18,7 @@ describe('AuthService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [{ provide: CONFIG, useValue: defaultConfig }]
+      providers: [{ provide: CONFIG, useValue: defaultConfig }],
     });
 
     service = TestBed.inject(AuthService);
@@ -29,7 +29,6 @@ describe('AuthService', () => {
   afterEach(() => {
     httpMock.verify();
   });
-
 
   describe('#redirectToAuthorizationServer', () => {
     it('should open window with authentication page', () => {
@@ -47,14 +46,16 @@ describe('AuthService', () => {
     it('should return Observable with auth data', () => {
       const params: Params = { code: 'fake-code' };
 
-      service.getJwt(params).subscribe(result => {
+      service.getJwt(params).subscribe((result) => {
         expect(result).toEqual(authData);
       });
 
-      httpMock.expectOne({
-        method: 'POST',
-        url: config.serverUrl
-      }).flush(authData);
+      httpMock
+        .expectOne({
+          method: 'POST',
+          url: config.serverUrl,
+        })
+        .flush(authData);
     });
   });
 });

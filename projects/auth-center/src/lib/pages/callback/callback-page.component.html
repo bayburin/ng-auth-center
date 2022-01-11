@@ -1,19 +1,31 @@
 <ac-layout>
   <div *ngIf="isLoading$ | async as loading; else loaded">
     <p>Идет процесс авторизации...</p>
-    <mat-progress-bar mode="indeterminate" color="primary" class="actions"></mat-progress-bar>
+    <div class="actions primary">
+      <div class="progress">
+        <div class="indeterminate"></div>
+      </div>
+    </div>
   </div>
   <ng-template #loaded>
     <div *ngIf="error$ | async as error; else success">
       <p class="warn-color">Ошибка авторизации</p>
-      <mat-progress-bar mode="determinate" value="100" color="warn" class="actions"></mat-progress-bar>
+      <div class="actions warning">
+        <div class="progress">
+          <div class="determinate" style="width: 100%"></div>
+        </div>
+      </div>
       <div class="actions">
-        <button mat-raised-button routerLink="/" color="primary">Войти заново</button>
+        <button type="button" class="btn btn-primary mx-auto" routerLink="/">Войти заново</button>
       </div>
     </div>
     <ng-template #success>
-      <p class="accent-color">Авторизация прошла успешно. Перенаправление...</p>
-      <mat-progress-bar mode="indeterminate" color="accent" class="actions"></mat-progress-bar>
+      <p class="success-color">Авторизация прошла успешно. Перенаправление...</p>
+      <div class="actions success">
+        <div class="progress">
+          <div class="indeterminate"></div>
+        </div>
+      </div>
     </ng-template>
   </ng-template>
 </ac-layout>

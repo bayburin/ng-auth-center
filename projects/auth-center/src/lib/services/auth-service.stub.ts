@@ -5,5 +5,7 @@ import { IAuthData } from './../interfaces/auth-data.interface';
 
 export class AuthServiceStub extends AuthServiceAbstract {
   redirectToAuthorizationServer(): void {}
-  getJwt(): Observable<IAuthData> { return of({ } as IAuthData); }
+  getJwt(): Observable<IAuthData> {
+    return of({} as IAuthData);
+  }
 }
