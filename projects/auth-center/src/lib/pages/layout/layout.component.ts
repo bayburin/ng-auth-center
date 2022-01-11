@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { AuthFacade } from './../../facades/auth.facade';
 
@@ -7,12 +7,8 @@ import { AuthFacade } from './../../facades/auth.facade';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
 })
-export class LayoutComponent implements OnInit {
-  appName: string;
+export class LayoutComponent {
+  appName = this.authFacade.getAppName();
 
   constructor(private authFacade: AuthFacade) {}
-
-  ngOnInit(): void {
-    this.appName = this.authFacade.getAppName();
-  }
 }
