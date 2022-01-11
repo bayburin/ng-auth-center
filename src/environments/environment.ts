@@ -11,9 +11,9 @@ export const environment = {
     appName: 'Орбита',
     jwtOptions: {
       allowedDomains: ['localhost:3000'],
-      disallowedRoutes: []
-    }
-  }
+      disallowedRoutes: [],
+    },
+  },
 };
 
 /*
