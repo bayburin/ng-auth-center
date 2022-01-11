@@ -29,12 +29,12 @@ ac-layout {
     margin: 20px auto 0 auto;
   }
 
-  .accent-color {
-    color: map-get($md-success, 700);
+  .success-color {
+    color: map-get($md-success, 800);
   }
 
   .warn-color {
-    color: map-get($md-warning, 700);
+    color: map-get($md-warning, 800);
   }
 
   .mx-auto {

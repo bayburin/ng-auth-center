@@ -12,11 +12,10 @@ import { routerModule } from './auth-center-routing.module';
 
 import { CONFIG, defaultConfig } from './auth-center.config';
 import { IConfig } from './interfaces/config.interface';
-import { FakeBackendInterceptor } from './interceptors/fake-backend/fake-backend.interceptor';
+// import { FakeBackendInterceptor } from './interceptors/fake-backend/fake-backend.interceptor';
 import { ErrorInterceptor } from './interceptors/error/error.interceptor';
 import { AuthState } from './store/auth.state';
 import { jwtOptionsFactory } from './factories/jwt-options.factory';
-import { MaterialModule } from './material.module';
 import { Router } from '@angular/router';
 
 export const jwtModule = JwtModule.forRoot({
@@ -29,7 +28,7 @@ export const jwtModule = JwtModule.forRoot({
 
 @NgModule({
   declarations: [LayoutComponent, CallbackPageComponent, AuthorizeForbiddenPageComponent, UnauthorizedPageComponent],
-  imports: [CommonModule, MaterialModule, routerModule, jwtModule],
+  imports: [CommonModule, routerModule, jwtModule],
 })
 export class AuthCenterModule {
   static forRoot(config: IConfig): ModuleWithProviders<AuthCenterModule> {
