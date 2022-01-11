@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-lib-watch-styles": "scss-bundle -e \"./projects/auth-center/src/styles.scss\" -o \"./dist/auth-center/_theme.scss\" -p \"./\" -w \"./projects/auth-center/src/\"",
+    "build-lib-watch-styles": "scss-bundle -e \"./projects/auth-center/src/styles.scss\" -o \"./dist/auth-center/styles.scss\" -p \"./\" -w \"./projects/auth-center/src/\"",
     "build-lib-styles": "scss-bundle -e \"./projects/auth-center/src/styles.scss\" -o \"./dist/auth-center/assets/styles.scss\" -p \"./\""
   },
   "private": true,
