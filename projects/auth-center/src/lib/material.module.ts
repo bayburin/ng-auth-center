@@ -5,15 +5,10 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 
-const modules: any[] = [
-  MatButtonModule,
-  MatDividerModule,
-  MatProgressBarModule,
-  MatCardModule
-];
+const modules: any[] = [MatButtonModule, MatDividerModule, MatProgressBarModule, MatCardModule];
 
 @NgModule({
   imports: [...modules],
-  exports: [...modules]
+  exports: [...modules],
 })
-export class MaterialModule { }
+export class MaterialModule {}

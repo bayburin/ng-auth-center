@@ -1,7 +1,7 @@
 export class RequestState {
   private readonly CODE_LENGTH = 30;
 
-  constructor(public value: string = null) { }
+  constructor(public value: string = null) {}
 
   generateCode(): void {
     let result = '';

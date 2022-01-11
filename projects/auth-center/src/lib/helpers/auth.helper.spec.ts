@@ -17,8 +17,8 @@ describe('AuthHelper', () => {
       providers: [
         JwtHelperService,
         { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
-        { provide: AuthState, useClass: AuthStateStub }
-      ]
+        { provide: AuthState, useClass: AuthStateStub },
+      ],
     });
 
     helper = TestBed.inject(AuthHelper);

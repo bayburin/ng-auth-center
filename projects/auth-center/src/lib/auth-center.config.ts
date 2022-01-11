@@ -14,12 +14,12 @@ export const defaultConfig: IConfig = {
   storageNaming: {
     jwt: 'jwt',
     state: 'state',
-    returnUrl: 'returnUrl'
+    returnUrl: 'returnUrl',
   },
   jwtOptions: {
     allowedDomains: [],
-    disallowedRoutes: []
-  }
+    disallowedRoutes: [],
+  },
 };
 
 export const CONFIG = new InjectionToken<IConfig>('config of module');

@@ -21,7 +21,7 @@ describe('RequestStateGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      providers: [{ provide: AuthState, useClass: AuthStateStub }]
+      providers: [{ provide: AuthState, useClass: AuthStateStub }],
     });
 
     guard = TestBed.inject(RequestStateGuard);
@@ -37,10 +37,10 @@ describe('RequestStateGuard', () => {
       get(target, property) {
         if (property === 'root') {
           return {
-            queryParams: { state }
+            queryParams: { state },
           };
         }
-      }
+      },
     });
   });
 
@@ -49,7 +49,7 @@ describe('RequestStateGuard', () => {
   });
 
   it('should call "isValid" method with params from "state" attribute', () => {
-    guard.canActivate(null, stubSnapshotProxy).subscribe(result => {
+    guard.canActivate(null, stubSnapshotProxy).subscribe((result) => {
       expect(isValidSpy).toHaveBeenCalledWith(state);
     });
   });
@@ -57,7 +57,7 @@ describe('RequestStateGuard', () => {
   it('should return true if request state is valid', () => {
     isValidSpy.and.returnValue(true);
 
-    guard.canActivate(null, stubSnapshotProxy).subscribe(result => {
+    guard.canActivate(null, stubSnapshotProxy).subscribe((result) => {
       expect(result).toBeTrue();
     });
   });
@@ -74,7 +74,7 @@ describe('RequestStateGuard', () => {
     });
 
     it('should return false', () => {
-      guard.canActivate(null, stubSnapshotProxy).subscribe(result => {
+      guard.canActivate(null, stubSnapshotProxy).subscribe((result) => {
         expect(result).toBeFalse();
       });
     });

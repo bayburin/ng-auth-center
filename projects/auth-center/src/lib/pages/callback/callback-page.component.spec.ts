@@ -22,19 +22,18 @@ describe('CallbackPageComponent', () => {
         if (property === 'snapshot') {
           return { queryParams };
         }
-      }
+      },
     });
 
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       providers: [
         { provide: AuthFacade, useClass: AuthFacadeStub },
-        { provide: ActivatedRoute, useValue: stubActivatedRouteProxy }
+        { provide: ActivatedRoute, useValue: stubActivatedRouteProxy },
       ],
       declarations: [CallbackPageComponent],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
-    .compileComponents();
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

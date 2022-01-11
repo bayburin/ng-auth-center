@@ -23,23 +23,13 @@ export const jwtModule = JwtModule.forRoot({
   jwtOptionsProvider: {
     provide: JWT_OPTIONS,
     useFactory: jwtOptionsFactory,
-    deps: [AuthState, CONFIG]
-  }
+    deps: [AuthState, CONFIG],
+  },
 });
 
 @NgModule({
-  declarations: [
-    LayoutComponent,
-    CallbackPageComponent,
-    AuthorizeForbiddenPageComponent,
-    UnauthorizedPageComponent
-  ],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    routerModule,
-    jwtModule
-  ]
+  declarations: [LayoutComponent, CallbackPageComponent, AuthorizeForbiddenPageComponent, UnauthorizedPageComponent],
+  imports: [CommonModule, MaterialModule, routerModule, jwtModule],
 })
 export class AuthCenterModule {
   static forRoot(config: IConfig): ModuleWithProviders<AuthCenterModule> {
@@ -48,8 +38,8 @@ export class AuthCenterModule {
       providers: [
         { provide: CONFIG, useValue: { ...defaultConfig, ...config } },
         // { provide: HTTP_INTERCEPTORS, useClass: FakeBackendInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
-      ]
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+      ],
     };
   }
 
@@ -57,7 +47,7 @@ export class AuthCenterModule {
     const routerConfig = router.config;
     const registeredPath = config.redirectUrl.replace(/^(.*\/\/)?[^\/]+\//, '');
 
-    if (routerConfig.every(route => route.path !== registeredPath)) {
+    if (routerConfig.every((route) => route.path !== registeredPath)) {
       routerConfig.unshift({
         path: config.redirectUrl.replace(/^(.*\/\/)?[^\/]+\//, ''),
         redirectTo: 'oauth2/callback',

@@ -8,7 +8,7 @@ import { RequestState } from '../models/request-state/request-state.model';
 import { AuthStateAbstract } from './auth.state.abstract';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthState extends AuthStateAbstract {
   constructor(@Inject(CONFIG) private config: IConfig) {
@@ -30,7 +30,7 @@ export class AuthState extends AuthStateAbstract {
   }
 
   getRequestState$(): Observable<RequestState> {
-    return this.requestState$.asObservable().pipe(map(state => new RequestState(state)));
+    return this.requestState$.asObservable().pipe(map((state) => new RequestState(state)));
   }
 
   setRequestState(requestState: RequestState): void {

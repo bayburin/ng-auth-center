@@ -25,8 +25,8 @@ describe('AuthFacade', () => {
       providers: [
         { provide: AuthService, useClass: AuthServiceStub },
         { provide: AuthState, useClass: AuthStateStub },
-        { provide: CONFIG, useValue: defaultConfig }
-      ]
+        { provide: CONFIG, useValue: defaultConfig },
+      ],
     });
 
     facade = TestBed.inject(AuthFacade);

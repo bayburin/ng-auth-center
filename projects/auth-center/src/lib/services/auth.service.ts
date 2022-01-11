@@ -10,13 +10,10 @@ import { IAuthData } from './../interfaces/auth-data.interface';
 import { AuthServiceAbstract } from './auth.service.abstract';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService extends AuthServiceAbstract {
-  constructor(
-    private http: HttpClient,
-    @Inject(CONFIG) private config: IConfig
-  ) {
+  constructor(private http: HttpClient, @Inject(CONFIG) private config: IConfig) {
     super();
   }
 
@@ -26,9 +23,11 @@ export class AuthService extends AuthServiceAbstract {
       response_type: this.config.responseType,
       state: state.value,
       redirect_uri: this.config.redirectUrl,
-      scope: this.config.scope
+      scope: this.config.scope,
     };
-    const paramsString = Object.entries(paramsObject).map(([key, val]) => `${key}=${val}`).join('&');
+    const paramsString = Object.entries(paramsObject)
+      .map(([key, val]) => `${key}=${val}`)
+      .join('&');
     const url = `${this.config.authorizationServer}?${paramsString}`;
 
     window.open(url, '_self');

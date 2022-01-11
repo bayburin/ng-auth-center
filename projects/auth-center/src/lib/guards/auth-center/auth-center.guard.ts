@@ -7,20 +7,15 @@ import { AuthState } from './../../store/auth.state';
 import { AuthFacade } from './../../facades/auth.facade';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthCenterGuard implements CanActivate {
-  constructor(
-    private authState: AuthState,
-    private authFacade: AuthFacade
-  ) { }
+  constructor(private authState: AuthState, private authFacade: AuthFacade) {}
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> {
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.authState.getIsAuthenticated$().pipe(
-      map(isAuthenticated => !!isAuthenticated),
-      tap(isAuthenticated => {
+      map((isAuthenticated) => !!isAuthenticated),
+      tap((isAuthenticated) => {
         if (!isAuthenticated) {
           this.authState.setReturnUrl(state.url);
           // this.router.navigate(['oauth2', 'unauthorized']);

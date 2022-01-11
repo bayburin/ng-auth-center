@@ -11,7 +11,7 @@ import { CONFIG } from '../auth-center.config';
 import { AuthFacadeAbstract } from './auth.facade.abstract';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthFacade extends AuthFacadeAbstract {
   isLoading$: Observable<boolean>;
@@ -45,23 +45,24 @@ export class AuthFacade extends AuthFacadeAbstract {
 
     this.authState.setIsLoading(true);
     this.authState.removeRequestState();
-    this.authService.getJwt(params).pipe(
-      finalize(() => this.authState.setIsLoading(false))
-    ).subscribe(
-      data => {
-        this.authState.setJwt(data.token);
+    this.authService
+      .getJwt(params)
+      .pipe(finalize(() => this.authState.setIsLoading(false)))
+      .subscribe(
+        (data) => {
+          this.authState.setJwt(data.token);
 
-        setTimeout(() => {
-          this.authState.setIsAuthenticated(true);
-          this.router.navigateByUrl(this.authState.getReturnUrl());
-          this.authState.setReturnUrl('/');
-        }, 1000);
-      },
-      error => {
-        console.log(error);
-        this.authState.setError(error);
-      }
-    );
+          setTimeout(() => {
+            this.authState.setIsAuthenticated(true);
+            this.router.navigateByUrl(this.authState.getReturnUrl());
+            this.authState.setReturnUrl('/');
+          }, 1000);
+        },
+        (error) => {
+          console.log(error);
+          this.authState.setError(error);
+        }
+      );
   }
 
   logout(): void {

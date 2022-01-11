@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   auth: {
-    clientId: '82',
-    redirectUrl: 'http://localhost:4200/oauth2/callback',
-    serverUrl: 'http://localhost:3000/api/v1/auth/token',
-    appName: 'Орбита',
+    clientId: '83',
+    redirectUrl: 'https://localhost.iss-reshetnev.ru:4200/oauth2/callback',
+    serverUrl: 'https://inv-dev.iss-reshetnev.ru/api/v1/auth/token',
+    appName: 'Тестирование авторизации',
     jwtOptions: {
-      allowedDomains: ['localhost:3000'],
+      allowedDomains: ['inv-dev.iss-reshetnev.ru'],
       disallowedRoutes: [],
     },
   },

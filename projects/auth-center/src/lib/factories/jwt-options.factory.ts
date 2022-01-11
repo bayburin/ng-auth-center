@@ -8,6 +8,6 @@ export function jwtOptionsFactory(authState: AuthState, config: IConfig) {
     },
     skipWhenExpired: true,
     allowedDomains: config.jwtOptions.allowedDomains,
-    disallowedRoutes: config.jwtOptions.disallowedRoutes
+    disallowedRoutes: config.jwtOptions.disallowedRoutes,
   };
 }
