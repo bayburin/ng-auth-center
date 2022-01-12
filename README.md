@@ -43,10 +43,17 @@
 
 <br>
 
-**Внимание!** Для корректной работы библиотеки в проекте должны быть установлены следующие зависимости:
+**Внимание!**
+<br>
+Для корректной работы библиотеки в проекте должны быть установлены следующие зависимости:
+<br>
+**Для версий 1.x:**
 1. @angular/cdk (установка: `npm i @angular/cdk` или `yarn add @angular/cdk`)
 2. @angular/material (установка: `npm i @angular/material` или `yarn add @angular/material`)
 3. @auth0/angular-jwt (установка: `npm i @auth0/angular-jwt` или `yarn add @auth0/angular-jwt`)
+
+**Для версий 2.x:**
+1. @auth0/angular-jwt (установка: `npm i @auth0/angular-jwt` или `yarn add @auth0/angular-jwt`)
 
 <br>
 
